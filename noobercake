@@ -1,0 +1,112 @@
+#include <iomanip>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+
+	srand(time(0));
+
+	int num, max = 85, chan = rand() % 100, rew = rand() % 1500, lock = rand() % 10, lockg, n = 2;
+	char rr;
+
+	cout << "You have infiltrated the castle and it's only a matter of time before the guards find you.";
+
+	cout << "\n\nYou enter the room. A chest with a sizeable lock is in the center.";
+
+	cout << "\n\nA random number will be generated below. \n\nThis is your liklihood to succeed in forcing the lock. (Maximum is 85%.)";
+
+	do
+	{
+		num = rand() % max;
+
+		cout << "\n\nPercent Chance: " << num << "%";
+
+		cout << "\n\nWould you like to reroll? \n(Lose 10% liklihood) \n\n(y/n): ";
+		cin >> rr;
+
+		if (rr == 'y')
+		{
+				max -= 10;
+
+				if (max < 0)
+				{
+					cout << "\n\nYou have waited too long and have been caught by the castle guards. Try again next time. ";
+
+					_getch();
+					return 0;
+				}
+		}
+	} while (rr == 'y');
+
+	if (chan > num)
+	{
+		cout << "\n\nYou have failed to force the lock.";
+
+		cout << "\n\nYou have a second chance to open the lock by manually picking it.";
+
+		cout << "\n\nYou have two chances before the lockpick breaks.";
+
+		do 
+		{
+			while (n > 0)
+			{
+				cout << "\n\nGuess a random number 1 through 10: ";
+				cin >> lockg;
+
+				if (lockg > lock)
+				{
+					cout << "\n\nGuess is too high.";
+
+					cout << "\n\nGuess a lower number: ";
+					cin >> lockg;
+				}
+
+				if (lockg < lock)
+				{
+					cout << "\n\nGuess is too low.";
+
+					cout << "\n\n Guess a higher number: ";
+					cin >> lockg;
+				}
+
+				if (lockg == lock)
+				{
+					cout << "\n\nCongratulations! You have succeeded!";
+
+					cout << "\n\nYou have obtained: " << rew << " gold coins.";
+
+					cout << "\n\nPress any key to exit.";
+
+					_getch();
+					return 0;
+				}
+				n = n - 1;
+			}
+
+			if (n = 0)
+			{
+				cout << "\n\nYour lockpick has broken. \n\nYou did not succeed in obtaining the treasure. Try again next time.";
+
+				cout << "\n\nPress any key to exit.";
+
+				_getch();
+				return 0;
+			}
+		} while (n > 0);
+	}
+
+	if (chan < num)
+	{
+		cout << "\n\nCongratulations! You have succeeded!";
+
+		cout << "\n\nYou have obtained: " << rew << " gold coins.";
+	}
+
+	cout << "\n\nPress any key to exit.";
+
+	_getch();
+	return 0;
+}
